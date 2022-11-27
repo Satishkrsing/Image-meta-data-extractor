@@ -1,18 +1,9 @@
-
-# import OS module
 import os
 from re import S
-import smtplib
-import time
-import imaplib
-import email
-import traceback 
 import xlsxwriter
-from datetime import datetime, timedelta
-import datetime
 import exiftool
 from exiftool import ExifToolHelper
-# Get the list of all files and directories
+
 path = "/home/bvm/Desktop/imagemetadata/pic"
 dir_list = os.listdir(path)
 count = 1
@@ -21,7 +12,7 @@ col = 0
 workbook = xlsxwriter.Workbook('metadata.xlsx')
 worksheet = workbook.add_worksheet()
 for f in dir_list:
-    infoDict = {} #Creating the dict to get the metadata tags
+    infoDict = {}
     exifToolPath = exiftool
     imgPath = f"pic/{f}"
     with ExifToolHelper() as et:
@@ -45,6 +36,3 @@ for f in dir_list:
             worksheet.write(row, col + 2, Finfo)
             row +=1
 workbook.close()
-
-
-
